@@ -6,7 +6,10 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def get_seed():
-    return f"{socket.gethostname()}", 200
+    hostname = socket.gethostname()
+    private_ip = socket.gethostbyname(hostname)
+
+    return f"{private_ip}", 200
 
 @app.route("/", methods=["POST"])
 def post_seed():
